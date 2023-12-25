@@ -44,6 +44,7 @@ export default function Home() {
             setKeyword(e.target.value);
             setResponse(null);
           }}
+          style={{ color: "black" }}
         />
 
         <div className="mt-4 sm:mt-0 sm:ml-3">

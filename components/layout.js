@@ -18,6 +18,10 @@ export default function Layout({ children }) {
       href: '/contact',
       title: 'Contact',
     },
+    {
+        href: '/login',
+        title: 'Login',
+      },
   ];
 
   return (
