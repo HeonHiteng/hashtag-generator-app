@@ -15,8 +15,8 @@ export default function Layout({ children }) {
       title: 'About',
     },
     {
-      href: '/contact',
-      title: 'Contact',
+      href: '/challenge',
+      title: 'Challange',
     },
     {
         href: '/login',
