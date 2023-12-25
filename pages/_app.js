@@ -1,18 +1,16 @@
 import Head from "next/head";
 import "tailwindcss/tailwind.css";
+import Layout from 'C:/Users/kelvi/Downloads/hashtag-generator-app/components/layout.js';
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
+    <Layout>
       <Head>
-        <title>RapidAPI - Hashtag Generator App</title>
-        <link rel="icon" href="/favicon.ico" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
-          rel="stylesheet"
-        />
+        <title>Tiktok Analytic Dashboard</title>
       </Head>
       <Component {...pageProps} />
+      </Layout>
     </>
   );
 }
