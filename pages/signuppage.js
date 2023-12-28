@@ -1,9 +1,9 @@
-"use client"
-// SignUp.js
+'use client'
 import React, { useState } from "react";
 import signUp from "C:/Users/kelvi/Downloads/hashtag-generator-app/firebase/auth/signup.js";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import styles from "C:/Users/kelvi/Downloads/hashtag-generator-app/styles/signin.module.css"; // Import styles from sign-in page
 
 function SignUp() {
     const [email, setEmail] = useState('');
@@ -25,24 +25,42 @@ function SignUp() {
     }
 
     return (
-        <div className="wrapper">
-            <div className="form-wrapper">
-                <h1 className="mt-60 mb-30">Sign up</h1>
-                <form onSubmit={handleForm} className="form">
-                    <label htmlFor="email">
-                        <p>Email</p>
-                        <input onChange={(e) => setEmail(e.target.value)} required type="email" name="email" id="email" placeholder="example@mail.com" />
-                    </label>
-                    <label htmlFor="password">
-                        <p>Password</p>
-                        <input onChange={(e) => setPassword(e.target.value)} required type="password" name="password" id="password" placeholder="password" />
-                    </label>
-                    <button type="submit">Sign up</button>
-                    <p>
-                        Already have an account?{' '}
-                        <Link href="/signinpage">Sign in</Link>
-                    </p>
-                </form>
+        <div className={styles.wrapper}>
+            <div className={styles.yellowBox}> {/* Use the same yellow box style */}
+                <div className={styles.formWrapper}>
+                    <h1 className={`${styles.mt60} ${styles.mb30}`}>Sign up</h1> {/* Use similar heading style */}
+                    <form onSubmit={handleForm} className={styles.form}>
+                        <label htmlFor="email">
+                            <p>Email</p>
+                            <input
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                                type="email"
+                                name="email"
+                                id="email"
+                                placeholder="example@mail.com"
+                                className={styles.input} // Use the same input style
+                            />
+                        </label>
+                        <label htmlFor="password">
+                            <p>Password</p>
+                            <input
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                type="password"
+                                name="password"
+                                id="password"
+                                placeholder="password"
+                                className={styles.input} // Use the same input style
+                            />
+                        </label>
+                        <button type="submit" className={styles.blueButton}>Sign up</button> {/* Use the same blue button style */}
+                        <p>
+                            Already have an account?{' '}
+                            <Link href="/signinpage">Sign in</Link>
+                        </p>
+                    </form>
+                </div>
             </div>
         </div>
     );

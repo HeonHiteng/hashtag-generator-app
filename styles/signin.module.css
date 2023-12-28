@@ -1,0 +1,74 @@
+/* styles.css */
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-wrapper {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label p {
+    margin-bottom: 5px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.formWrapper p a {
+    color: #001F3F;
+    border: 1px solid #001F3F; /* Add border */
+    border-radius: 2px;
+    padding: 2px 10px; /* Adjust padding to make it smaller */
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.formWrapper p a:hover {
+    background-color: #0056b3; /* Background color on hover */
+    color: white; /* Text color on hover */
+    text-decoration: none;
+}
+
+.blueButton {
+    background-color: #001F3F; /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.blueButton:hover {
+    background-color: #0056b3; /* Darker blue color on hover */
+}
+
+.yellowBox {
+    background-color: white;
+    padding: 20px; /* Adjust the padding as needed */
+    border-radius: 10px; /* Adjust the border-radius for round corners */
+    border: 2px solid #f0f0f0; /* Add an outline with round corners */
+}
+
+.formWrapper h1 {
+    font-size: 24px; /* Adjust the font size as needed */
+    font-weight: bold;
+    color: #001F3F; /* Dark blue color */
+}
