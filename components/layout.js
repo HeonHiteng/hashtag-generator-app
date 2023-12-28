@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import About from 'C:/Users/kelvi/Downloads/hashtag-generator-app/pages/about.js';
+import { AuthContextProvider } from 'C:/Users/kelvi/Downloads/hashtag-generator-app/context/AuthContext.js'
 
 export default function Layout({ children }) {
   const router = useRouter();
@@ -19,7 +20,7 @@ export default function Layout({ children }) {
       title: 'Challange',
     },
     {
-        href: '/login',
+        href: '/signinpage',
         title: 'Login',
       },
   ];
