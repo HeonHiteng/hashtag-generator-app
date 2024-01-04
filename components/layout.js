@@ -21,7 +21,7 @@ export default function Layout({ children }) {
     },
     {
       href: '/about',
-      title: 'About',
+      title: 'Video Analyse',
       icon: InformationCircleIcon,
     },
     {
