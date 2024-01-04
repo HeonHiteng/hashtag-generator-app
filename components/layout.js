@@ -2,6 +2,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import About from 'C:/Users/kelvi/Downloads/hashtag-generator-app/pages/about.js';
 import { AuthContextProvider } from 'C:/Users/kelvi/Downloads/hashtag-generator-app/context/AuthContext.js'
+import {
+  HomeIcon,
+  InformationCircleIcon,
+  LightningBoltIcon,
+  UserCircleIcon,
+} from '@heroicons/react/outline'
+
 
 export default function Layout({ children }) {
   const router = useRouter();
@@ -10,38 +17,43 @@ export default function Layout({ children }) {
     {
       href: '/',
       title: 'Homepage',
+      icon: HomeIcon,
     },
     {
       href: '/about',
       title: 'About',
+      icon: InformationCircleIcon,
     },
     {
       href: '/challenge',
-      title: 'Challange',
+      title: 'Challenge',
+      icon: LightningBoltIcon,
     },
     {
-        href: '/signinpage',
-        title: 'Login',
-      },
+      href: '/signinpage',
+      title: 'Sign In',
+      icon: UserCircleIcon,
+    },
   ];
 
   return (
-    <div classnsame='min-h-screen flex flex-col'>
+    <div className='min-h-screen flex flex-col'>
       <header className='bg-purple-200 sticky top-0 h-14 flex justify-center items-center font-semibold uppercase'>
         Tiktok Analytic Dashboard
       </header>
       <div className='flex flex-col md:flex-row flex-1'>
-        <aside className='bg-fuchsia-100 w-full md:w-60'>
+        <aside className='bg-blue-900 w-full md:w-60 shadow-lg'>
           <nav>
             <ul>
-              {menuItems.map(({ href, title }) => (
+              {menuItems.map(({ href, title, icon: Icon }) => (
                 <li className='m-2' key={title}>
                   <Link href={href}>
                     <a
-                      className={`flex p-2 bg-fuchsia-200 rounded hover:bg-fuchsia-400 cursor-pointer ${
-                        router.asPath === href && 'bg-fuchsia-600 text-white'
+                      className={`flex p-2 bg-blue-800 rounded hover:bg-blue-700 cursor-pointer ${
+                        router.asPath === href && 'bg-blue-700 text-white'
                       }`}
                     >
+                      <Icon className='w-6 h-6 mr-2 text-white' />
                       {title}
                     </a>
                   </Link>
