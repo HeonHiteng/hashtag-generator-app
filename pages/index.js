@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useState } from "react";
+import copy from "clipboard-copy";
 
 export default function Home() {
   const [keyword, setKeyword] = useState('travel');
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [copiedIndex, setCopiedIndex] = useState(null);
 
   const getHashtags = async () => {
     try {
@@ -19,13 +21,23 @@ export default function Home() {
     }
   };
 
+  const copyToClipboard = (hashtag, index) => {
+    copy(hashtag);
+    setCopiedIndex(index);
+
+    // Reset the copied indicator after a short delay
+    setTimeout(() => {
+      setCopiedIndex(null);
+    }, 1000);
+  };
+
   return (
     <div className="flex flex-col md:px-12 px-4 bg-background font-poppins items-center min-h-screen">
       <h1 className="md:text-6xl text-4xl font-bold text-center text-active mt-10">
         Hashtag Generator
       </h1>
       <h2 className="text-primary text-center text-2xl font-light mt-6" style={{ color: "#001F3F" }}>
-      Get the best hashtags for your content.
+        Get the best hashtags for your content.
       </h2>
 
       <form
@@ -61,18 +73,45 @@ export default function Home() {
         </div>
       </form>
       {response && (
-        <div className="mt-10">
-          <p className="grid sm:grid-cols-4 grid-cols-1 sm:gap-4 gap-1 p-6 bg-primary rounded-lg">
-            {response.map((item) => (
-              <span key={item.relevance}>
-                <span className="font-bold">#</span>
-                {item.hashtag}
-              </span>
-            ))}
-          </p>
-        </div>
-      )}
-      
+  <div className="mt-10">
+    <p className="grid sm:grid-cols-4 grid-cols-1 sm:gap-5 gap-1 p-6 bg-primary rounded-lg">
+      {response.slice(0, 20).map((item, index) => (
+        <span
+          key={item.relevance}
+          onClick={() => copyToClipboard(item.hashtag, index)}
+          className={`hashtag-item ${index === copiedIndex ? "copied" : ""}`}
+        >
+          <span className="font-bold">{index + 1}</span>
+          <span>#</span>
+          {item.hashtag}
+        </span>
+      ))}
+    </p>
+  </div>
+)}
+
+      <style jsx>{`
+        .hashtag-item {
+          position: relative;
+          cursor: pointer;
+          margin-bottom: 0.5em; /* Add margin between each hashtag item */
+        }
+
+        .copied {
+          animation: copiedAnimation 1s;
+        }
+
+        @keyframes copiedAnimation {
+          0% {
+            background-color:  #ADD8E6; /* Light green */
+          }
+          100% {
+            background-color: #ffffff; /* White */
+          }
+        }
+
+
+      `}</style>
     </div>
   );
 }
