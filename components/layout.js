@@ -8,6 +8,8 @@ import {
   LightningBoltIcon,
   UserCircleIcon,
 } from '@heroicons/react/outline'
+import PredictForm from 'C:/Users/kelvi/Downloads/hashtag-generator-app/pages/predictpage.js';
+
 
 
 export default function Layout({ children }) {
@@ -32,6 +34,11 @@ export default function Layout({ children }) {
     {
       href: '/signinpage',
       title: 'Sign In',
+      icon: UserCircleIcon,
+    },
+    {
+      href: '/predictpage',
+      title: 'Predict',
       icon: UserCircleIcon,
     },
   ];
