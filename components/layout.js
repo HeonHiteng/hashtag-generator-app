@@ -22,7 +22,7 @@ export default function Layout({ children }) {
       icon: HomeIcon,
     },
     {
-      href: '/about',
+      href: 'https://huggingface.co/spaces/HeonHiTeng/tiktok-analyse',
       title: 'Video Analyse',
       icon: InformationCircleIcon,
     },
@@ -34,11 +34,6 @@ export default function Layout({ children }) {
     {
       href: '/signinpage',
       title: 'Sign In',
-      icon: UserCircleIcon,
-    },
-    {
-      href: '/predictpage',
-      title: 'Predict',
       icon: UserCircleIcon,
     },
   ];
