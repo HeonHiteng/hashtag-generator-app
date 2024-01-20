@@ -17,8 +17,8 @@ export default function Layout({ children }) {
 
   const menuItems = [
     {
-      href: '/',
-      title: 'Homepage',
+      href: '/hashtag',
+      title: 'Hashtag Generator',
       icon: HomeIcon,
     },
     {
@@ -32,7 +32,7 @@ export default function Layout({ children }) {
       icon: LightningBoltIcon,
     },
     {
-      href: '/signinpage',
+      href: '/',
       title: 'Sign In',
       icon: UserCircleIcon,
     },

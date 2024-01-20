@@ -1,117 +1,69 @@
-import axios from "axios";
-import { useState } from "react";
-import copy from "clipboard-copy";
+'use client'
+import React, { useState } from "react";
+import signIn from "C:/Users/kelvi/Downloads/hashtag-generator-app/firebase/auth/signin.js";
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import styles from "C:/Users/kelvi/Downloads/hashtag-generator-app/styles/signin.module.css";
 
-export default function Home() {
-  const [keyword, setKeyword] = useState('travel');
-  const [response, setResponse] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [copiedIndex, setCopiedIndex] = useState(null);
+function SignIn() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const router = useRouter(); // Define the router object
 
-  const getHashtags = async () => {
-    try {
-      setLoading(true);
-      const res = await axios.get("api/generate/", {
-        params: { keyword },
-      });
-      setResponse(res.data.data.hashtags);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
+    const handleForm = async (event) => {
+        event.preventDefault();
+
+        const { result, error } = await signIn(email, password);
+
+        if (error) {
+            return console.log(error);
+        }
+
+        // else successful
+        console.log(result);
+        router.push("/"); // Use router.push to navigate to the "/admin" page after successful sign-in
     }
-  };
 
-  const copyToClipboard = (hashtag, index) => {
-    copy(hashtag);
-    setCopiedIndex(index);
-
-    // Reset the copied indicator after a short delay
-    setTimeout(() => {
-      setCopiedIndex(null);
-    }, 1000);
-  };
-
-  return (
-    <div className="flex flex-col md:px-12 px-4 bg-background font-poppins items-center min-h-screen">
-      <h1 className="md:text-6xl text-4xl font-bold text-center text-active mt-10">
-        Hashtag Generator
-      </h1>
-      <h2 className="text-primary text-center text-2xl font-light mt-6" style={{ color: "#001F3F" }}>
-        Get the best hashtags for your content.
-      </h2>
-
-      <form
-        className="sm:mx-auto mt-20 justify-center w-full sm:flex"
-        onSubmit={(e) => {
-          getHashtags();
-          e.preventDefault();
-          e.stopPropagation();
-        }}
-      >
-        <input
-          type="text"
-          className="sm:w-1/3 w-full rounded-lg px-5 py-3 text-background font-bold text-lg focus:outline-none focus:ring-2 focus:ring-active"
-          placeholder="Enter your keyword eg: travel"
-          onChange={(e) => {
-            setKeyword(e.target.value);
-            setResponse(null);
-          }}
-          style={{ color: "black" }}
-        />
-
-        <div className="mt-4 sm:mt-0 sm:ml-3">
-          <button
-            className="w-full rounded-lg px-5 py-3 bg-active font-bold text-lg text-background hover:bg-primary sm:px-10"
-            type="submit"
-          >
-            {loading ? (
-              <span className="animate-pulse">Loading..</span>
-            ) : (
-              <>Generate</>
-            )}
-          </button>
+    return (
+        <div className={styles.wrapper}>
+            <div className={styles.yellowBox}> {/* Add a yellow box wrapper */}
+                <div className={styles.formWrapper}>
+                    <h1 className={`${styles.mt60} ${styles.mb30}`}>Sign in</h1>
+                    <form onSubmit={handleForm} className={styles.form}>
+                        <label htmlFor="email">
+                            <p>Email</p>
+                            <input
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                                type="email"
+                                name="email"
+                                id="email"
+                                placeholder="example@mail.com"
+                                className={styles.input} // Apply input style
+                            />
+                        </label>
+                        <label htmlFor="password">
+                            <p>Password</p>
+                            <input
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                type="password"
+                                name="password"
+                                id="password"
+                                placeholder="password"
+                                className={styles.input} // Apply input style
+                            />
+                        </label>
+                        <button type="submit" className={styles.blueButton}>Sign In</button>
+                        <p>
+                            Don't have an account?{' '}
+                            <Link href="/signuppage">Sign up</Link>
+                        </p>
+                    </form>
+                </div>
+            </div>
         </div>
-      </form>
-      {response && (
-  <div className="mt-10">
-    <p className="grid sm:grid-cols-4 grid-cols-1 sm:gap-5 gap-1 p-6 bg-primary rounded-lg">
-      {response.slice(0, 20).map((item, index) => (
-        <span
-          key={item.relevance}
-          onClick={() => copyToClipboard(item.hashtag, index)}
-          className={`hashtag-item ${index === copiedIndex ? "copied" : ""}`}
-        >
-          <span className="font-bold">{index + 1}</span>
-          <span>#</span>
-          {item.hashtag}
-        </span>
-      ))}
-    </p>
-  </div>
-)}
-
-      <style jsx>{`
-        .hashtag-item {
-          position: relative;
-          cursor: pointer;
-          margin-bottom: 0.5em; /* Add margin between each hashtag item */
-        }
-
-        .copied {
-          animation: copiedAnimation 1s;
-        }
-
-        @keyframes copiedAnimation {
-          0% {
-            background-color:  #ADD8E6; /* Light green */
-          }
-          100% {
-            background-color: #ffffff; /* White */
-          }
-        }
-
-
-      `}</style>
-    </div>
-  );
+    );
 }
+
+export default SignIn;

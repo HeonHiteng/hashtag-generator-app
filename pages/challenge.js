@@ -3,6 +3,7 @@
 import React from 'react';
 import styles from '../styles/challenge.module.css'; // Import your CSS module
 import Image from 'next/image'; // Import the Image component from Next.js
+import Link from 'next/link';
 
 const challenges = [
     {
@@ -50,25 +51,27 @@ const challenges = [
     
   ];
 
-function ChallengePage() {
-  return (
-    <div className={styles.challengesList}>
-      {challenges.map((challenge) => (
-        <div key={challenge.id} className={styles.challengeBox}>
-          <Image
-            src={challenge.icon}
-            alt={`Icon for ${challenge.title}`}
-            width={64}
-            height={64}
-          />
-          <h2>{challenge.title}</h2>
-          <p>{challenge.description}</p>
-          <p>Reward: {challenge.reward}</p>
-        </div>
-      ))}
-    </div>
-  );
-}
+  function ChallengePage() {
+    return (
+      <div className={styles.challengesList}>
+        {challenges.map((challenge) => (
+          <Link key={challenge.id} href={`/challenges/${challenge.id}`}>
+            <a className={styles.challengeBox}>
+              <Image
+                src={challenge.icon}
+                alt={`Icon for ${challenge.title}`}
+                width={64}
+                height={64}
+              />
+              <h2>{challenge.title}</h2>
+              <p>{challenge.description}</p>
+              <p>Reward: {challenge.reward}</p>
+            </a>
+          </Link>
+        ))}
+      </div>
+    );
+  }
 
 export default ChallengePage;
 
